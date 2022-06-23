@@ -1,14 +1,12 @@
 const express = require("express");
-const dotenv = require("dotenv");
+require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const app = express();
 
 // components
 const connectDB = require("./db/connect");
 const Router = require("./routes/routes");
-
-dotenv.config();
-const app = express();
 
 // middlewares
 app.use(cors());
@@ -17,7 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", Router);
 
 const PORT = process.env.PORT || 8000;
-
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI);
