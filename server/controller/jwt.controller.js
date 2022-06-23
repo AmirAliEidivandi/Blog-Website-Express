@@ -14,9 +14,9 @@ const authenticatedToken = async (req, res, next) => {
         if (err) {
             return res.status(403).json({ msg: "invalid token" });
         }
+        req.user = user;
+        next();
     });
-    req.user = user;
-    next();
 };
 
 const createNewToken = async (req, res) => {

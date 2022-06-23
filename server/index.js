@@ -8,6 +8,7 @@ const app = express();
 const connectDB = require("./db/connect");
 const authRouter = require("./routes/auth.routes");
 const jwtRouter = require("./routes/jwt.routes");
+const postsRouter = require('./routes/post.routes');
 
 // middlewares
 app.use(cors());
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // routes
 app.use("/token", jwtRouter);
 app.use("/auth", authRouter);
+app.use('/posts', postsRouter)
 
 const PORT = process.env.PORT || 8000;
 const start = async () => {
